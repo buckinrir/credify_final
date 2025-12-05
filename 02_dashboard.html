@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credify - Dashboard</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f8fafc; display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 220px; background: white; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; padding: 20px; flex-shrink: 0; overflow-y: auto; }
+        .logo { display: flex; align-items: center; margin-bottom: 40px; cursor: pointer; }
+        .logo-icon { width: 28px; height: 28px; background: #2563EB; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-right: 10px; color: white; }
+        .logo-text { font-size: 20px; font-weight: 700; color: #0f172a; }
+        .nav-item { display: flex; align-items: center; padding: 12px; color: #64748b; text-decoration: none; border-radius: 8px; margin-bottom: 5px; font-weight: 500; font-size: 15px; cursor: pointer; }
+        .nav-item:hover { background: #f1f5f9; color: #1e293b; }
+        .nav-item.active { background: #eff6ff; color: #2563EB; }
+        .nav-item svg { width: 20px; height: 20px; margin-right: 12px; }
+        .main { flex: 1; padding: 40px; overflow-y: auto; }
+        .header { display: flex; justify-content: space-between; margin-bottom: 30px; align-items: center; }
+        h1 { margin: 0; color: #1e293b; font-size: 28px; }
+        .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+        .card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .score-card { background: linear-gradient(135deg, #2563EB 0%, #1e40af 100%); color: white; text-align: center; }
+        .score { font-size: 64px; font-weight: 800; line-height: 1; margin: 10px 0; }
+        .status-text { opacity: 0.9; margin-bottom: 20px; font-size: 18px; }
+        .refresh-msg { font-size: 12px; opacity: 0.7; margin-top: 15px; }
+        .factor-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+        .factor-row:last-child { border: none; }
+        .badge { padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; }
+        .good { background: #dcfce7; color: #166534; }
+        .bad { background: #fee2e2; color: #991b1b; }
+        button { background:white; color:#2563EB; border:none; padding:8px 16px; border-radius:6px; font-weight:600; cursor:pointer; }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            body { flex-direction: column; height: auto; overflow: visible; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; padding: 15px; box-sizing: border-box; }
+            .logo { margin-bottom: 15px; }
+            .nav-item { display: inline-flex; margin-right: 10px; margin-bottom: 0; font-size: 13px; padding: 8px 12px; }
+            .nav-item svg { width: 16px; height: 16px; margin-right: 6px; }
+            .main { padding: 20px; overflow: visible; }
+            .grid { grid-template-columns: 1fr; gap: 20px; }
+            .header { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .score { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo" onclick="location.href='02_dashboard.html'"><div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="logo-text">Credify</div></div>
+        <div style="white-space: nowrap; overflow-x: auto; padding-bottom: 5px;">
+            <a href="02_dashboard.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Dashboard</a>
+            <a href="03_report_details.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Report</a>
+            <a href="04_simulation_setup.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg> Simulator</a>
+            <a href="06_plan_builder_step1.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Plan</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="header"><h1>Dashboard</h1><div>Welcome, Jane Doe</div></div>
+        <div class="grid">
+            <div>
+                <div class="card score-card">
+                    <h3>Current Score</h3>
+                    <div class="score">758</div>
+                    <div class="status-text">Excellent</div>
+                    <button onclick="location.href='03_report_details.html'">View Report</button>
+                    <div class="refresh-msg">Last updated: Today, 9:00 AM</div>
+                </div>
+                <div class="card" style="margin-top: 30px;">
+                    <h3 style="margin-top:0;">Quick Actions</h3>
+                    <div onclick="location.href='06_plan_builder_step1.html'" style="color:#2563EB; font-weight:600; padding:10px 0; cursor:pointer;">+ Add a financial goal</div>
+                    <div onclick="location.href='04_simulation_setup.html'" style="color:#2563EB; font-weight:600; padding:10px 0; cursor:pointer;">+ Simulate a purchase</div>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="margin-top:0;">Top Influencing Factors</h3>
+                <div class="factor-row"><span>Payment History</span><span class="badge good">Excellent</span></div>
+                <div class="factor-row"><span>Credit Card Usage</span><span class="badge bad">Poor (High)</span></div>
+                <div class="factor-row"><span>Credit Age</span><span class="badge good">Good</span></div>
+                <div class="factor-row"><span>Total Accounts</span><span class="badge good">Good</span></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

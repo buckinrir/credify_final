@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credify - Login</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f1f5f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; color: #1e293b; padding: 20px; box-sizing: border-box; }
+        .login-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 380px; text-align: center; }
+        .logo { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
+        .logo-icon { width: 32px; height: 32px; background: #2563EB; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-right: 10px; color: white; }
+        .logo-text { font-size: 24px; font-weight: 700; color: #0f172a; }
+        h2 { font-size: 20px; margin-bottom: 20px; color: #334155; }
+        .error-banner { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 6px; font-size: 14px; margin-bottom: 20px; text-align: left; border: 1px solid #fca5a5; }
+        .input-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 5px; color: #475569; }
+        input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
+        button { width: 100%; padding: 12px; background: #2563EB; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #1d4ed8; }
+        .links { margin-top: 20px; font-size: 14px; }
+        a { color: #2563EB; text-decoration: none; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">
+            <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+            <div class="logo-text">Credify</div>
+        </div>
+        <h2>Welcome Back</h2>
+        <div class="error-banner"><strong>Login Failed:</strong> The email or password is incorrect.</div>
+        <form action="02_dashboard.html">
+            <div class="input-group"><label>Email Address</label><input type="email" value="user@example.com"></div>
+            <div class="input-group"><label>Password</label><input type="password" value="********"></div>
+            <button onclick="window.location.href='02_dashboard.html'; return false;">Log In</button>
+        </form>
+        <div class="links"><a href="#">Forgot Password?</a><br><br>Don't have an account? <a href="#">Sign up</a></div>
+    </div>
+</body>
+</html>

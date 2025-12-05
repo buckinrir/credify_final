@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credify - Simulator</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f8fafc; display: flex; height: 100vh; overflow: hidden; color: #1e293b; }
+        .sidebar { width: 220px; background: white; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; padding: 20px; flex-shrink: 0; }
+        .logo { display: flex; align-items: center; margin-bottom: 40px; cursor: pointer; }
+        .logo-icon { width: 28px; height: 28px; background: #2563EB; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-right: 10px; color: white; }
+        .logo-text { font-size: 20px; font-weight: 700; color: #0f172a; }
+        .nav-item { display: flex; align-items: center; padding: 12px; color: #64748b; text-decoration: none; border-radius: 8px; margin-bottom: 5px; font-weight: 500; font-size: 15px; cursor: pointer; }
+        .nav-item:hover { background: #f1f5f9; color: #1e293b; }
+        .nav-item.active { background: #eff6ff; color: #2563EB; }
+        .nav-item svg { width: 20px; height: 20px; margin-right: 12px; }
+        .main { flex: 1; padding: 40px; overflow-y: auto; }
+        h1 { margin: 0 0 30px 0; font-size: 28px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); max-width: 800px; }
+        .chips { display: flex; gap: 10px; margin-bottom: 30px; overflow-x: auto; padding-bottom: 5px; }
+        .chip { padding: 8px 16px; background: #f1f5f9; border-radius: 20px; font-size: 14px; cursor: pointer; border: 1px solid #e2e8f0; font-weight: 500; color: #475569; white-space: nowrap; transition: all 0.2s; }
+        .chip:hover { border-color: #93c5fd; }
+        .chip.active { background: #dbeafe; color: #1e40af; border-color: #2563EB; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; color: #475569; }
+        select, input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        .actions { display: flex; justify-content: flex-end; gap: 15px; margin-top: 20px; }
+        .btn-secondary { background: #f1f5f9; color: #475569; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .btn-primary { background: #2563EB; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; height: auto; overflow: visible; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #e2e8f0; padding: 15px; box-sizing: border-box; }
+            .logo { margin-bottom: 15px; }
+            .nav-item { display: inline-flex; margin-right: 10px; font-size: 13px; padding: 8px 12px; }
+            .main { padding: 20px; overflow: visible; }
+            .form-grid { grid-template-columns: 1fr; gap: 0; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo" onclick="location.href='02_dashboard.html'"><div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div><div class="logo-text">Credify</div></div>
+        <div style="white-space: nowrap; overflow-x: auto; padding-bottom: 5px;">
+            <a href="02_dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Dashboard</a>
+            <a href="03_report_details.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Report</a>
+            <a href="04_simulation_setup.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg> Simulator</a>
+            <a href="06_plan_builder_step1.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Plan</a>
+        </div>
+    </div>
+    <div class="main">
+        <h1>Score Simulator</h1>
+        <div class="card">
+            <h3>Quick Start Scenarios</h3>
+            <div class="chips">
+                <div class="chip active" onclick="setScenario('debt', this)">Pay Off Debt</div>
+                <div class="chip" onclick="setScenario('newcard', this)">Open New Card</div>
+                <div class="chip" onclick="setScenario('limit', this)">Increase Limit</div>
+            </div>
+            
+            <form action="05_simulation_results.html">
+                <div class="form-grid">
+                    <div class="form-group"><label>Action Type</label><select id="actionType"><option value="paydown">Pay down balance</option><option value="new_account">Open new account</option><option value="limit_increase">Request limit increase</option></select></div>
+                    <div class="form-group"><label>Amount ($)</label><input type="number" id="amount" value="500"></div>
+                    <div class="form-group"><label>Credit Card Usage (Utilization)</label><input type="text" id="utilization" value="Currently 10%" readonly style="background:#f8fafc; color:#64748b;"></div>
+                    <div class="form-group"><label>Timeframe (Months)</label><input type="number" id="timeframe" value="3"></div>
+                </div>
+                <div class="actions">
+                    <button type="button" class="btn-secondary" onclick="resetForm()">Reset</button>
+                    <button onclick="location.href='05_simulation_results.html'; return false;" class="btn-primary">Run Simulation</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function setScenario(type, element) {
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+            if (type === 'debt') { document.getElementById('actionType').value = 'paydown'; document.getElementById('amount').value = '500'; document.getElementById('timeframe').value = '3'; } 
+            else if (type === 'newcard') { document.getElementById('actionType').value = 'new_account'; document.getElementById('amount').value = '0'; document.getElementById('timeframe').value = '6'; } 
+            else if (type === 'limit') { document.getElementById('actionType').value = 'limit_increase'; document.getElementById('amount').value = '1000'; document.getElementById('timeframe').value = '1'; }
+        }
+        function resetForm() { document.querySelectorAll('.chip').forEach(c => c.classList.remove('active')); document.getElementById('actionType').value = 'paydown'; document.getElementById('amount').value = ''; document.getElementById('timeframe').value = ''; }
+    </script>
+</body>
+</html>

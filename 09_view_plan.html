@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credify - View Plan</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f8fafc; display: flex; height: 100vh; overflow: hidden; color: #1e293b; }
+        .sidebar { width: 220px; background: white; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; padding: 20px; flex-shrink: 0; }
+        .logo { display: flex; align-items: center; margin-bottom: 40px; cursor: pointer; }
+        .logo-icon { width: 28px; height: 28px; background: #2563EB; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-right: 10px; color: white; }
+        .logo-text { font-size: 20px; font-weight: 700; color: #0f172a; }
+        
+        .nav-item { display: flex; align-items: center; padding: 12px; color: #64748b; text-decoration: none; border-radius: 8px; margin-bottom: 5px; font-weight: 500; font-size: 15px; cursor: pointer; white-space: nowrap; }
+        .nav-item:hover { background: #f1f5f9; color: #1e293b; }
+        .nav-item.active { background: #eff6ff; color: #2563EB; }
+        .nav-item svg { width: 20px; height: 20px; margin-right: 12px; }
+
+        .main { flex: 1; padding: 40px; overflow-y: auto; }
+        
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 30px; }
+        
+        h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+        h2 { font-size: 24px; margin-bottom: 15px; }
+        p { font-size: 16px; color: #475569; }
+        
+        .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; margin-top: 20px; }
+        .summary-item { background: #f1f5f9; padding: 20px; border-radius: 10px; }
+        .summary-item span { display: block; color: #64748b; font-size: 14px; }
+        .summary-item strong { font-size: 28px; color: #0f172a; }
+
+        .timeline-item { display: flex; padding: 20px 0; border-bottom: 1px solid #e2e8f0; }
+        .timeline-item:last-child { border-bottom: none; }
+
+        .timeline-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: white; font-weight: 700; margin-right: 15px; }
+        .icon-complete { background: #16a34a; }
+        .icon-progress { background: #f59e0b; }
+        .icon-pending { background: #94a3b8; }
+
+        .timeline-content h3 { margin: 0; font-size: 18px; }
+        .timeline-content p { margin: 5px 0 0 0; }
+
+        .status { font-size: 14px; font-weight: 600; text-align: right; }
+        .status span { display: inline-block; padding: 5px 12px; border-radius: 8px; font-size: 12px; }
+        .status-completed { background: #dcfce7; color: #166534; }
+        .status-in-progress { background: #fef3c7; color: #92400e; }
+        .status-pending { background: #e2e8f0; color: #475569; }
+
+        .back-link { color: #2563EB; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; margin-bottom: 20px; }
+        .back-link svg { width: 18px; height: 18px; margin-right: 6px; }
+
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e2e8f0; }
+            .nav-item { display: inline-flex; margin-right: 10px; padding: 8px 10px; }
+            .main { padding: 20px; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .timeline-item { flex-direction: column; }
+            .status { margin-top: 10px; text-align: left; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="logo" onclick="location.href='02_dashboard.html'">
+        <div class="logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+        <div class="logo-text">Credify</div>
+    </div>
+
+    <div style="white-space: nowrap; overflow-x: auto; padding-bottom: 5px;">
+        <a href="02_dashboard.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            Dashboard
+        </a>
+
+        <a href="03_report_details.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Report
+        </a>
+
+        <a href="04_simulation_setup.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="20" x2="12" y2="10"></line>
+                <line x1="18" y1="20" x2="18" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="16"></line>
+            </svg>
+            Simulator
+        </a>
+
+        <a href="06_plan_builder_step1.html" class="nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Plan
+        </a>
+    </div>
+</div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <a href="06_plan_builder_step1.html" class="back-link">
+            <svg fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Back to Plan Builder
+        </a>
+
+        <h1>Your Credit Growth Plan</h1>
+
+        <!-- SUMMARY CARD -->
+        <div class="card">
+            <h2>Plan Summary</h2>
+
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span>Estimated Score in 6 Months</span>
+                    <strong>712</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>On-Time Payment Goal</span>
+                    <strong>100%</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Projected Utilization</span>
+                    <strong>12%</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIMELINE CARD -->
+        <div class="card">
+            <h2>Plan Timeline</h2>
+
+            <!-- STEP 1 -->
+            <div class="timeline-item">
+                <div class="timeline-icon icon-complete">✓</div>
+                <div class="timeline-content">
+                    <h3>Open a Starter Credit Card</h3>
+                    <p>You opened your first card to begin building credit history.</p>
+                </div>
+                <div class="status">
+                    <span class="status-completed">Completed</span><br>
+                    <small>Jan 2025</small>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="timeline-item">
+                <div class="timeline-icon icon-progress">!</div>
+                <div class="timeline-content">
+                    <h3>Pay Every Bill On Time</h3>
+                    <p>Continue consistent monthly payments to improve score stability.</p>
+                </div>
+                <div class="status">
+                    <span class="status-in-progress">In Progress</span><br>
+                    <small>Ongoing</small>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="timeline-item">
+                <div class="timeline-icon icon-progress">!</div>
+                <div class="timeline-content">
+                    <h3>Lower Your Credit Utilization</h3>
+                    <p>Target keeping your usage under 20% to strengthen your credit factors.</p>
+                </div>
+                <div class="status">
+                    <span class="status-in-progress">In Progress</span><br>
+                    <small>Goal: March 2025</small>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="timeline-item">
+                <div class="timeline-icon icon-pending">•</div>
+                <div class="timeline-content">
+                    <h3>Increase Your Credit Limit</h3>
+                    <p>After several months of consistent payments, request a limit increase.</p>
+                </div>
+                <div class="status">
+                    <span class="status-pending">Pending</span><br>
+                    <small>June 2025</small>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="timeline-item">
+                <div class="timeline-icon icon-pending">•</div>
+                <div class="timeline-content">
+                    <h3>Diversify Your Credit Mix</h3>
+                    <p>Consider a small, low-risk installment loan to diversify your profile.</p>
+                </div>
+                <div class="status">
+                    <span class="status-pending">Pending</span><br>
+                    <small>Late 2025</small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
